@@ -44,30 +44,11 @@ def callback():
 def handle_message(event):
     message = text=event.message.text
     if re.match('告訴我秘密',message):
-        buttons_template_message = TemplateSendMessage(
-        alt_text='這是樣板傳送訊息',
-        template=ButtonsTemplate(
-            thumbnail_image_url='https://i.imgur.com/kNBl363.jpg',
-            title='中華民國',
-            text='選單功能－TemplateSendMessage',
-            actions=[
-                PostbackAction(
-                    label='這是PostbackAction',
-                    display_text='顯示文字',
-                    data='實際資料'
-                ),
-                MessageAction(
-                    label='這是MessageAction',
-                    text='實際資料'
-                ),
-                URIAction(
-                    label='這是URIAction',
-                    uri='https://en.wikipedia.org/wiki/Taiwan'
-                )
-            ]
+        sticker_message = StickerSendMessage(
+            package_id = '446',
+            sticker_id = '1192'
         )
-    )
-        line_bot_api.reply_message(event.reply_token, buttons_template_message)
+        line_bot_api.reply_message(event.reply_token, sticker_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 #主程式
